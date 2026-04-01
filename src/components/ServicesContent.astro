@@ -9,21 +9,21 @@ const { lang } = Astro.props;
 const t = getStrings(lang);
 
 const renovationIncludes = {
-  az: ['Divar söküntüsü və quraşdırma', 'Elektrik və santexnika', 'Döşəmə işləri', 'Boya və dekorativ işlər', 'Keyfiyyət yoxlaması'],
-  ru: ['Демонтаж и монтаж стен', 'Электрика и сантехника', 'Напольные работы', 'Покраска и декор', 'Контроль качества'],
-  en: ['Wall demolition and installation', 'Electrical and plumbing', 'Flooring work', 'Painting and decorative work', 'Quality inspection'],
+  az: ['Divar söküntüsü və yeni divarlar', 'Elektrik və santexnika işləri', 'Döşəmə — laminat, plitə, parket', 'Boya, divar kağızı və dekorativ örtüklər', 'Son keyfiyyət yoxlaması'],
+  ru: ['Демонтаж и возведение стен', 'Электрика и сантехника', 'Полы — ламинат, плитка, паркет', 'Покраска, обои и декоративные покрытия', 'Финальная проверка качества'],
+  en: ['Wall demolition and new walls', 'Electrical and plumbing work', 'Flooring — laminate, tile, parquet', 'Paint, wallpaper and decorative finishes', 'Final quality inspection'],
 };
 
 const constructionIncludes = {
-  az: ['Beton işləri', 'Dam örtüyü', 'Fasad işləri', 'Döşəmə quraşdırması', 'Layihə idarəetməsi'],
-  ru: ['Бетонные работы', 'Кровля', 'Фасадные работы', 'Укладка полов', 'Управление проектом'],
-  en: ['Concrete work', 'Roofing', 'Facade work', 'Floor installation', 'Project management'],
+  az: ['Beton və karkas işləri', 'Dam örtüyü və izolyasiya', 'Fasad və xarici işlər', 'Döşəmə quraşdırması', 'Layihə idarəetməsi — başdan sona'],
+  ru: ['Бетонные и каркасные работы', 'Кровля и гидроизоляция', 'Фасад и наружные работы', 'Устройство полов', 'Управление проектом — от и до'],
+  en: ['Concrete and structural work', 'Roofing and waterproofing', 'Facade and exterior work', 'Floor installation', 'Project management — start to finish'],
 };
 
 const furnitureIncludes = {
-  az: ['Mətbəx mebelləri', 'Şkaf və garderob', 'Yataq otağı mebelləri', 'Ofis mebelləri', 'Fərdi dizayn'],
-  ru: ['Кухонная мебель', 'Шкафы и гардеробы', 'Мебель для спальни', 'Офисная мебель', 'Индивидуальный дизайн'],
-  en: ['Kitchen furniture', 'Wardrobes and closets', 'Bedroom furniture', 'Office furniture', 'Custom design'],
+  az: ['Mətbəx mebelləri — xüsusi ölçü', 'Şkaf və garderob sistemləri', 'Yataq otağı dəstləri', 'Ofis mebelləri', 'Sizin ölçülərə görə fərdi dizayn'],
+  ru: ['Кухонная мебель — по размерам', 'Шкафы и гардеробные системы', 'Мебель для спальни', 'Офисная мебель', 'Индивидуальный дизайн под ваши размеры'],
+  en: ['Kitchen furniture — custom-sized', 'Wardrobe and closet systems', 'Bedroom furniture sets', 'Office furniture', 'Custom design to your exact measurements'],
 };
 ---
 <!-- Page hero -->
