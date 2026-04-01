@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import ServicesOverview from '../../components/ServicesOverview.astro';
+import Process from '../../components/Process.astro';
+import PortfolioPreview from '../../components/PortfolioPreview.astro';
+import Testimonials from '../../components/Testimonials.astro';
+import CTASection from '../../components/CTASection.astro';
+
+const lang = 'az';
+---
+<BaseLayout
+  title="Bafcon — Təmir, Tikinti, Mebel | Bakı"
+  description="Bakıda 10+ illik təcrübə ilə premium interyer dizayn, təmir, tikinti və xüsusi ölçülü mebel xidmətləri. 700+ uğurlu layihə."
+  lang={lang}
+>
+  <Hero lang={lang} />
+  <ServicesOverview lang={lang} />
+  <Process lang={lang} />
+  <PortfolioPreview lang={lang} />
+  <Testimonials lang={lang} />
+  <CTASection lang={lang} />
+</BaseLayout>

@@ -1,0 +1,72 @@
+---
+import { getStrings, pageRoutes, type Lang } from '../utils/i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = getStrings(lang);
+
+const projects = [
+  { image: '/images/portfolio/living-room.jpg', category: t.portfolio.living_room, span: 'md:col-span-2 md:row-span-2' },
+  { image: '/images/portfolio/kitchen-2.jpg', category: t.portfolio.kitchen, span: '' },
+  { image: '/images/portfolio/bedroom.jpg', category: t.portfolio.bedroom, span: '' },
+  { image: '/images/portfolio/bathroom.jpg', category: t.portfolio.bathroom, span: 'md:col-span-2' },
+  { image: '/images/portfolio/corridor.jpg', category: t.portfolio.corridor, span: '' },
+  { image: '/images/portfolio/bathroom-2.jpg', category: t.portfolio.bathroom, span: '' },
+];
+---
+<section class="py-20 lg:py-28 bg-bg" id="portfolio">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Section header -->
+    <div class="reveal flex flex-col sm:flex-row sm:items-end sm:justify-between mb-14 lg:mb-20 gap-4">
+      <div>
+        <p class="text-primary font-body text-sm tracking-[0.3em] uppercase mb-3">
+          {t.portfolio.title}
+        </p>
+        <h2 class="font-display font-bold text-text" style="font-size: clamp(2rem, 3vw + 1rem, 3rem)">
+          {t.portfolio.title}
+        </h2>
+        <div class="w-16 h-0.5 bg-primary mt-4"></div>
+      </div>
+      <a
+        href={pageRoutes.projects[lang]}
+        class="inline-flex items-center gap-2 text-primary font-body font-medium text-sm hover:gap-3 transition-all duration-200 whitespace-nowrap"
+      >
+        {t.portfolio.view_all}
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+    </div>
+
+    <!-- Bento grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 lg:gap-4 auto-rows-[200px] md:auto-rows-[220px]">
+      {projects.map((project, i) => (
+        <a
+          href={pageRoutes.projects[lang]}
+          class:list={[
+            'reveal group relative overflow-hidden rounded-sm cursor-pointer',
+            project.span,
+            i > 0 ? `reveal-delay-${Math.min(i, 4)}` : ''
+          ]}
+        >
+          <img
+            src={project.image}
+            alt={project.category}
+            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            loading="lazy"
+          />
+          <!-- Hover overlay -->
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-5">
+            <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
+              <p class="text-text-light font-display font-medium text-lg">{project.category}</p>
+              <div class="w-8 h-0.5 bg-primary mt-2"></div>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,13 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContactContent from '../../components/ContactContent.astro';
+
+const lang = 'ru';
+---
+<BaseLayout
+  title="Контакты — Bafcon | Баку"
+  description="Свяжитесь с нами. Бесплатная консультация по телефону или WhatsApp. +994 51 885 77 77"
+  lang={lang}
+>
+  <ContactContent lang={lang} />
+</BaseLayout>

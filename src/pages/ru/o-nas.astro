@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AboutContent from '../../components/AboutContent.astro';
+import CTASection from '../../components/CTASection.astro';
+
+const lang = 'ru';
+---
+<BaseLayout
+  title="О нас — Bafcon | Баку"
+  description="Компания Bafcon работает в Баку с 2016 года. 10+ лет опыта, 700+ успешно сданных проектов."
+  lang={lang}
+>
+  <AboutContent lang={lang} />
+  <CTASection lang={lang} />
+</BaseLayout>

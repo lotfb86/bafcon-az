@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import ServicesOverview from '../../components/ServicesOverview.astro';
+import Process from '../../components/Process.astro';
+import PortfolioPreview from '../../components/PortfolioPreview.astro';
+import Testimonials from '../../components/Testimonials.astro';
+import CTASection from '../../components/CTASection.astro';
+
+const lang = 'en';
+---
+<BaseLayout
+  title="Bafcon — Renovation, Construction, Furniture | Baku"
+  description="Premium interior design, renovation, construction, and custom furniture services in Baku. 10+ years of experience, 700+ successful projects."
+  lang={lang}
+>
+  <Hero lang={lang} />
+  <ServicesOverview lang={lang} />
+  <Process lang={lang} />
+  <PortfolioPreview lang={lang} />
+  <Testimonials lang={lang} />
+  <CTASection lang={lang} />
+</BaseLayout>

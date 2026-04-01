@@ -1,0 +1,71 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { getAlternateLinks, type Lang } from '../utils/i18n';
+
+interface Props {
+  title: string;
+  description: string;
+  lang: Lang;
+  ogImage?: string;
+}
+
+const { title, description, lang, ogImage = '/images/hero/hero-interior.jpg' } = Astro.props;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const alternates = getAlternateLinks(Astro.url.pathname);
+---
+<!DOCTYPE html>
+<html lang={lang} class="antialiased">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalUrl.href} />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  {alternates.map(alt => (
+    <link rel="alternate" hreflang={alt.lang} href={new URL(alt.url, Astro.site).href} />
+  ))}
+  <link rel="alternate" hreflang="x-default" href={new URL('/az/', Astro.site).href} />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonicalUrl.href} />
+  <meta property="og:image" content={new URL(ogImage, Astro.site).href} />
+  <meta property="og:locale" content={lang === 'az' ? 'az_AZ' : lang === 'ru' ? 'ru_RU' : 'en_US'} />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={new URL(ogImage, Astro.site).href} />
+
+  <meta name="theme-color" content="#1C1C1E" />
+</head>
+<body class="min-h-screen flex flex-col bg-bg text-text">
+  <Header lang={lang} />
+  <main id="main-content" class="flex-1">
+    <slot />
+  </main>
+  <Footer lang={lang} />
+
+  <script>
+    // Scroll-triggered reveal animation
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    );
+
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+  </script>
+</body>
+</html>

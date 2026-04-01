@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectsContent from '../../components/ProjectsContent.astro';
+import CTASection from '../../components/CTASection.astro';
+
+const lang = 'en';
+---
+<BaseLayout
+  title="Projects — Bafcon | Baku"
+  description="Our completed projects in Baku. Living rooms, bedrooms, kitchens, and bathroom renovations."
+  lang={lang}
+>
+  <ProjectsContent lang={lang} />
+  <CTASection lang={lang} />
+</BaseLayout>

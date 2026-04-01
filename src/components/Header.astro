@@ -1,0 +1,131 @@
+---
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import { getNavLinks, type Lang } from '../utils/i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const navLinks = getNavLinks(lang);
+---
+<header class="fixed top-0 left-0 right-0 z-50 bg-bg-dark/95 backdrop-blur-sm border-b border-white/5" id="site-header">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 lg:h-20">
+      <!-- Logo -->
+      <a href={`/${lang}/`} class="flex items-center gap-3 shrink-0" aria-label="Bafcon - Home">
+        <img src="/images/logo.png" alt="Bafcon" width="40" height="40" class="w-10 h-10 rounded-full object-cover" loading="eager" />
+        <div class="flex flex-col">
+          <span class="text-text-light font-display text-xl font-semibold tracking-wide leading-none">bafcon</span>
+          <span class="text-primary text-[10px] tracking-[0.2em] uppercase font-body leading-none mt-0.5">T&#601;mir &middot; Tikinti &middot; Mebel</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden lg:flex items-center gap-8" aria-label="Main navigation">
+        {navLinks.map(link => (
+          <a
+            href={link.href}
+            class="text-text-light/70 hover:text-primary transition-colors duration-200 text-sm font-medium tracking-wide uppercase font-body"
+          >
+            {link.label}
+          </a>
+        ))}
+      </nav>
+
+      <!-- Right: Language + Mobile Toggle -->
+      <div class="flex items-center gap-4">
+        <LanguageSwitcher lang={lang} class="hidden sm:flex" />
+
+        <!-- Mobile hamburger -->
+        <button
+          type="button"
+          class="lg:hidden flex flex-col items-center justify-center w-11 h-11 rounded-md text-text-light hover:text-primary transition-colors"
+          aria-label="Open menu"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          id="menu-toggle"
+        >
+          <span class="hamburger-line w-6 h-0.5 bg-current transition-all duration-300 ease-out" id="line1"></span>
+          <span class="hamburger-line w-6 h-0.5 bg-current transition-all duration-300 ease-out mt-1.5" id="line2"></span>
+          <span class="hamburger-line w-4 h-0.5 bg-current transition-all duration-300 ease-out mt-1.5 self-start ml-[7px]" id="line3"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile menu overlay -->
+  <div
+    id="mobile-menu"
+    class="fixed inset-0 top-16 bg-bg-dark/98 backdrop-blur-md transform translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] lg:hidden z-40"
+    aria-hidden="true"
+  >
+    <nav class="flex flex-col items-center justify-center h-full gap-8 px-8" aria-label="Mobile navigation">
+      {navLinks.map((link, i) => (
+        <a
+          href={link.href}
+          class="text-text-light text-2xl font-display font-medium tracking-wide hover:text-primary transition-colors duration-200 mobile-nav-link"
+          style={`transition-delay: ${i * 80}ms`}
+        >
+          {link.label}
+        </a>
+      ))}
+      <div class="mt-4 pt-4 border-t border-white/10">
+        <LanguageSwitcher lang={lang} />
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- Spacer for fixed header -->
+<div class="h-16 lg:h-20"></div>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const line1 = document.getElementById('line1');
+  const line2 = document.getElementById('line2');
+  const line3 = document.getElementById('line3');
+  let isOpen = false;
+
+  function openMenu() {
+    isOpen = true;
+    menu?.classList.remove('translate-x-full');
+    menu?.classList.add('translate-x-0');
+    menu?.setAttribute('aria-hidden', 'false');
+    toggle?.setAttribute('aria-expanded', 'true');
+    toggle?.setAttribute('aria-label', 'Close menu');
+    line1?.classList.add('rotate-45', 'translate-y-[4px]');
+    line2?.classList.add('opacity-0');
+    line3?.classList.add('-rotate-45', '-translate-y-[8px]', 'w-6', 'ml-0', 'self-center');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    isOpen = false;
+    menu?.classList.remove('translate-x-0');
+    menu?.classList.add('translate-x-full');
+    menu?.setAttribute('aria-hidden', 'true');
+    toggle?.setAttribute('aria-expanded', 'false');
+    toggle?.setAttribute('aria-label', 'Open menu');
+    line1?.classList.remove('rotate-45', 'translate-y-[4px]');
+    line2?.classList.remove('opacity-0');
+    line3?.classList.remove('-rotate-45', '-translate-y-[8px]', 'w-6', 'ml-0', 'self-center');
+    document.body.style.overflow = '';
+  }
+
+  toggle?.addEventListener('click', () => {
+    if (isOpen) closeMenu();
+    else openMenu();
+  });
+
+  // Close menu when clicking a link
+  menu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  // Close on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isOpen) closeMenu();
+  });
+</script>

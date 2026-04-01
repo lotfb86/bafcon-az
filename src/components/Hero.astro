@@ -1,0 +1,84 @@
+---
+import { getStrings, pageRoutes, type Lang } from '../utils/i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = getStrings(lang);
+---
+<section class="relative min-h-[90vh] flex items-end pb-16 lg:pb-20 overflow-hidden" aria-label="Hero">
+  <!-- Background image -->
+  <div class="absolute inset-0">
+    <img
+      src="/images/hero/hero-interior.jpg"
+      alt=""
+      class="w-full h-full object-cover"
+      loading="eager"
+      fetchpriority="high"
+    />
+    <!-- Gradient overlays for text readability -->
+    <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+    <div class="max-w-2xl">
+      <!-- Tagline -->
+      <p class="text-primary font-body text-sm sm:text-base tracking-[0.3em] uppercase mb-4 lg:mb-6" style="text-shadow: 0 2px 8px rgba(0,0,0,0.5)">
+        {t.hero.tagline}
+      </p>
+
+      <!-- Heading -->
+      <h1
+        class="font-display font-bold text-text-light leading-[1.1] mb-6"
+        style="font-size: clamp(2.5rem, 5vw + 1rem, 4.5rem); text-shadow: 0 2px 12px rgba(0,0,0,0.6)"
+      >
+        Bafcon
+      </h1>
+
+      <!-- Subtitle -->
+      <p
+        class="text-text-light/85 font-body leading-relaxed mb-8 lg:mb-10 max-w-lg"
+        style="font-size: clamp(1rem, 1.5vw + 0.5rem, 1.25rem); text-shadow: 0 1px 6px rgba(0,0,0,0.5)"
+      >
+        {t.hero.subtitle}
+      </p>
+
+      <!-- CTA -->
+      <a
+        href={pageRoutes.contact[lang]}
+        class="inline-flex items-center gap-3 bg-primary hover:bg-primary-hover text-white font-body font-medium px-8 py-4 rounded-sm transition-all duration-300 text-base shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+      >
+        {t.hero.cta}
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+    </div>
+
+    <!-- Stats bar -->
+    <div class="mt-12 lg:mt-16 grid grid-cols-3 gap-6 sm:gap-8 max-w-xl">
+      <div class="border-l-2 border-primary pl-4">
+        <p class="text-text-light font-display font-bold text-3xl sm:text-4xl lg:text-5xl" style="text-shadow: 0 2px 8px rgba(0,0,0,0.5)">700+</p>
+        <p class="text-text-light/60 font-body text-xs sm:text-sm mt-1">{t.stats.apartments}</p>
+      </div>
+      <div class="border-l-2 border-primary pl-4">
+        <p class="text-text-light font-display font-bold text-3xl sm:text-4xl lg:text-5xl" style="text-shadow: 0 2px 8px rgba(0,0,0,0.5)">10+</p>
+        <p class="text-text-light/60 font-body text-xs sm:text-sm mt-1">{t.stats.years}</p>
+      </div>
+      <div class="border-l-2 border-primary pl-4">
+        <p class="text-text-light font-display font-bold text-3xl sm:text-4xl lg:text-5xl" style="text-shadow: 0 2px 8px rgba(0,0,0,0.5)">3</p>
+        <p class="text-text-light/60 font-body text-xs sm:text-sm mt-1">{t.stats.services}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-6 left-1/2 -translate-x-1/2 hidden lg:flex flex-col items-center gap-2 opacity-60">
+    <div class="w-6 h-10 border-2 border-text-light/40 rounded-full flex items-start justify-center p-1">
+      <div class="w-1.5 h-3 bg-text-light/60 rounded-full animate-bounce"></div>
+    </div>
+  </div>
+</section>

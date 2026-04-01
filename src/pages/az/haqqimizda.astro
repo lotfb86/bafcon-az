@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AboutContent from '../../components/AboutContent.astro';
+import CTASection from '../../components/CTASection.astro';
+
+const lang = 'az';
+---
+<BaseLayout
+  title="Haqqımızda — Bafcon | Bakı"
+  description="Bafcon 2016-cı ildən Bakıda fəaliyyət göstərir. 10+ illik təcrübə, 700+ uğurlu layihə ilə Bakının ən etibarlı interyer dizayn şirkəti."
+  lang={lang}
+>
+  <AboutContent lang={lang} />
+  <CTASection lang={lang} />
+</BaseLayout>

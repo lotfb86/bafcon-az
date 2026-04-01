@@ -1,0 +1,79 @@
+---
+import { getStrings, type Lang } from '../utils/i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = getStrings(lang);
+
+const steps = [
+  { num: '01', title: t.process.step1, desc: t.process.step1_desc },
+  { num: '02', title: t.process.step2, desc: t.process.step2_desc },
+  { num: '03', title: t.process.step3, desc: t.process.step3_desc },
+  { num: '04', title: t.process.step4, desc: t.process.step4_desc },
+];
+---
+<section class="py-20 lg:py-28 bg-bg-dark relative overflow-hidden" id="process">
+  <!-- Subtle marble texture overlay -->
+  <div class="absolute inset-0 opacity-[0.03]">
+    <img src="/images/textures/marble.jpg" alt="" class="w-full h-full object-cover" loading="lazy" />
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Section header -->
+    <div class="reveal text-center mb-16 lg:mb-20">
+      <p class="text-primary font-body text-sm tracking-[0.3em] uppercase mb-3">
+        {t.process.title}
+      </p>
+      <h2 class="font-display font-bold text-text-light" style="font-size: clamp(2rem, 3vw + 1rem, 3rem)">
+        {t.process.title}
+      </h2>
+      <div class="w-16 h-0.5 bg-primary mx-auto mt-4"></div>
+    </div>
+
+    <!-- Timeline -->
+    <div class="relative">
+      <!-- Connecting line (desktop) -->
+      <div class="hidden lg:block absolute top-12 left-0 right-0 h-px bg-white/10" aria-hidden="true">
+        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
+        {steps.map((step, i) => (
+          <div class={`reveal reveal-delay-${i + 1} relative`}>
+            <!-- Mobile vertical line -->
+            {i < steps.length - 1 && (
+              <div class="sm:hidden absolute left-6 top-14 bottom-0 w-px bg-white/10 -mb-8" aria-hidden="true"></div>
+            )}
+
+            <div class="flex flex-col items-center text-center lg:items-center">
+              <!-- Number circle -->
+              <div class="relative z-10 w-14 h-14 rounded-full border-2 border-primary bg-bg-dark flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(232,136,45,0.15)]">
+                <span class="text-primary font-display font-bold text-lg">{step.num}</span>
+              </div>
+
+              <!-- Content -->
+              <h3 class="font-display font-semibold text-text-light text-xl mb-3">
+                {step.title}
+              </h3>
+              <p class="text-text-light/50 font-body text-sm leading-relaxed max-w-xs">
+                {step.desc}
+              </p>
+            </div>
+
+            <!-- Arrow between steps (desktop) -->
+            {i < steps.length - 1 && (
+              <div class="hidden lg:block absolute top-[2.75rem] -right-3 translate-x-1/2 text-primary/40" aria-hidden="true">
+                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                </svg>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

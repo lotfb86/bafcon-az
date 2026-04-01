@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://bafcon.vercel.app/sitemap-index.xml

@@ -1,0 +1,69 @@
+---
+import { getStrings, type Lang } from '../utils/i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = getStrings(lang);
+
+const projects = [
+  { image: '/images/portfolio/living-room.jpg', category: t.portfolio.living_room, size: 'large' },
+  { image: '/images/portfolio/kitchen-2.jpg', category: t.portfolio.kitchen, size: 'normal' },
+  { image: '/images/portfolio/bedroom.jpg', category: t.portfolio.bedroom, size: 'normal' },
+  { image: '/images/portfolio/bathroom.jpg', category: t.portfolio.bathroom, size: 'wide' },
+  { image: '/images/portfolio/corridor.jpg', category: t.portfolio.corridor, size: 'normal' },
+  { image: '/images/portfolio/bathroom-2.jpg', category: t.portfolio.bathroom, size: 'normal' },
+];
+---
+<!-- Page hero -->
+<section class="relative py-24 lg:py-32 bg-bg-dark overflow-hidden">
+  <div class="absolute inset-0 opacity-20">
+    <img src="/images/portfolio/living-room.jpg" alt="" class="w-full h-full object-cover" loading="eager" />
+  </div>
+  <div class="absolute inset-0 bg-bg-dark/80"></div>
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h1 class="font-display font-bold text-text-light mb-4" style="font-size: clamp(2.5rem, 4vw + 1rem, 4rem)">
+      {t.projects_page.title}
+    </h1>
+    <p class="text-text-light/60 font-body text-lg max-w-lg mx-auto">{t.projects_page.subtitle}</p>
+    <div class="w-16 h-0.5 bg-primary mx-auto mt-6"></div>
+  </div>
+</section>
+
+<!-- Projects grid -->
+<section class="py-20 lg:py-28 bg-bg">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+      {projects.map((project, i) => (
+        <div class:list={[
+          'reveal group relative overflow-hidden rounded-sm cursor-pointer',
+          `reveal-delay-${Math.min(i + 1, 4)}`,
+          project.size === 'large' ? 'sm:col-span-2 sm:row-span-2' : '',
+          project.size === 'wide' ? 'sm:col-span-2' : '',
+        ]}>
+          <div class:list={[
+            'overflow-hidden',
+            project.size === 'large' ? 'aspect-square' : 'aspect-[4/3]',
+          ]}>
+            <img
+              src={project.image}
+              alt={project.category}
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              loading="lazy"
+            />
+          </div>
+          <!-- Overlay -->
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+            <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
+              <p class="text-text-light font-display font-medium text-xl">{project.category}</p>
+              <div class="w-8 h-0.5 bg-primary mt-2"></div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

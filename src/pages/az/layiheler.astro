@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectsContent from '../../components/ProjectsContent.astro';
+import CTASection from '../../components/CTASection.astro';
+
+const lang = 'az';
+---
+<BaseLayout
+  title="Layihələr — Bafcon | Bakı"
+  description="Bakıda həyata keçirilmiş layihələrimiz. Qonaq otağı, yataq otağı, mətbəx və hamam renovasiyaları."
+  lang={lang}
+>
+  <ProjectsContent lang={lang} />
+  <CTASection lang={lang} />
+</BaseLayout>

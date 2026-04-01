@@ -1,0 +1,147 @@
+---
+import { getStrings, pageRoutes, type Lang } from '../utils/i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = getStrings(lang);
+
+const renovationIncludes = {
+  az: ['Divar söküntüsü və quraşdırma', 'Elektrik və santexnika', 'Döşəmə işləri', 'Boya və dekorativ işlər', 'Keyfiyyət yoxlaması'],
+  ru: ['Демонтаж и монтаж стен', 'Электрика и сантехника', 'Напольные работы', 'Покраска и декор', 'Контроль качества'],
+  en: ['Wall demolition and installation', 'Electrical and plumbing', 'Flooring work', 'Painting and decorative work', 'Quality inspection'],
+};
+
+const constructionIncludes = {
+  az: ['Beton işləri', 'Dam örtüyü', 'Fasad işləri', 'Döşəmə quraşdırması', 'Layihə idarəetməsi'],
+  ru: ['Бетонные работы', 'Кровля', 'Фасадные работы', 'Укладка полов', 'Управление проектом'],
+  en: ['Concrete work', 'Roofing', 'Facade work', 'Floor installation', 'Project management'],
+};
+
+const furnitureIncludes = {
+  az: ['Mətbəx mebelləri', 'Şkaf və garderob', 'Yataq otağı mebelləri', 'Ofis mebelləri', 'Fərdi dizayn'],
+  ru: ['Кухонная мебель', 'Шкафы и гардеробы', 'Мебель для спальни', 'Офисная мебель', 'Индивидуальный дизайн'],
+  en: ['Kitchen furniture', 'Wardrobes and closets', 'Bedroom furniture', 'Office furniture', 'Custom design'],
+};
+---
+<!-- Page hero -->
+<section class="relative py-24 lg:py-32 bg-bg-dark overflow-hidden">
+  <div class="absolute inset-0 opacity-20">
+    <img src="/images/services/kitchen.jpg" alt="" class="w-full h-full object-cover" loading="eager" />
+  </div>
+  <div class="absolute inset-0 bg-bg-dark/80"></div>
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h1 class="font-display font-bold text-text-light mb-4" style="font-size: clamp(2.5rem, 4vw + 1rem, 4rem)">
+      {t.services_page.title}
+    </h1>
+    <p class="text-text-light/60 font-body text-lg max-w-lg mx-auto">{t.services_page.subtitle}</p>
+    <div class="w-16 h-0.5 bg-primary mx-auto mt-6"></div>
+  </div>
+</section>
+
+<!-- Renovation -->
+<section class="py-20 lg:py-28 bg-bg">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div class="reveal">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center">
+            <svg class="w-7 h-7 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085" />
+            </svg>
+          </div>
+          <h2 class="font-display font-bold text-text text-3xl">{t.services_section.renovation}</h2>
+        </div>
+        <p class="text-muted font-body leading-relaxed mb-8">{t.services_page.renovation_full}</p>
+        <div>
+          <h3 class="font-body font-medium text-text text-sm uppercase tracking-wider mb-4">{t.services_page.includes}</h3>
+          <ul class="space-y-3">
+            {renovationIncludes[lang].map(item => (
+              <li class="flex items-center gap-3 text-muted font-body text-sm">
+                <svg class="w-4 h-4 text-primary shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <img src="/images/services/renovation.jpg" alt={t.services_section.renovation} class="w-full rounded-sm shadow-xl" loading="lazy" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Construction (reversed layout) -->
+<section class="py-20 lg:py-28 bg-surface">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div class="reveal order-2 lg:order-1">
+        <img src="/images/portfolio/corridor.jpg" alt={t.services_section.construction} class="w-full rounded-sm shadow-xl" loading="lazy" />
+      </div>
+      <div class="reveal reveal-delay-1 order-1 lg:order-2">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center">
+            <svg class="w-7 h-7 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3H21m-3.75 3H21" />
+            </svg>
+          </div>
+          <h2 class="font-display font-bold text-text text-3xl">{t.services_section.construction}</h2>
+        </div>
+        <p class="text-muted font-body leading-relaxed mb-8">{t.services_page.construction_full}</p>
+        <div>
+          <h3 class="font-body font-medium text-text text-sm uppercase tracking-wider mb-4">{t.services_page.includes}</h3>
+          <ul class="space-y-3">
+            {constructionIncludes[lang].map(item => (
+              <li class="flex items-center gap-3 text-muted font-body text-sm">
+                <svg class="w-4 h-4 text-primary shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Furniture -->
+<section class="py-20 lg:py-28 bg-bg">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div class="reveal">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center">
+            <svg class="w-7 h-7 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
+            </svg>
+          </div>
+          <h2 class="font-display font-bold text-text text-3xl">{t.services_section.furniture}</h2>
+        </div>
+        <p class="text-muted font-body leading-relaxed mb-8">{t.services_page.furniture_full}</p>
+        <div>
+          <h3 class="font-body font-medium text-text text-sm uppercase tracking-wider mb-4">{t.services_page.includes}</h3>
+          <ul class="space-y-3">
+            {furnitureIncludes[lang].map(item => (
+              <li class="flex items-center gap-3 text-muted font-body text-sm">
+                <svg class="w-4 h-4 text-primary shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <img src="/images/services/furniture.jpg" alt={t.services_section.furniture} class="w-full rounded-sm shadow-xl" loading="lazy" />
+      </div>
+    </div>
+  </div>
+</section>
