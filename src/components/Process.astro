@@ -9,71 +9,85 @@ const { lang } = Astro.props;
 const t = getStrings(lang);
 
 const steps = [
-  { num: '01', title: t.process.step1, desc: t.process.step1_desc },
-  { num: '02', title: t.process.step2, desc: t.process.step2_desc },
-  { num: '03', title: t.process.step3, desc: t.process.step3_desc },
-  { num: '04', title: t.process.step4, desc: t.process.step4_desc },
+  { num: '01', title: t.process.step1, desc: t.process.step1_desc, color: 'bg-purple-500' },
+  { num: '02', title: t.process.step2, desc: t.process.step2_desc, color: 'bg-pink-500' },
+  { num: '03', title: t.process.step3, desc: t.process.step3_desc, color: 'bg-green-500' },
+  { num: '04', title: t.process.step4, desc: t.process.step4_desc, color: 'bg-red-500' },
+  { num: '05', title: t.process.step5, desc: t.process.step5_desc, color: 'bg-amber-500' },
+  { num: '06', title: t.process.step6, desc: t.process.step6_desc, color: 'bg-cyan-500' },
 ];
 ---
-<section class="py-20 lg:py-28 bg-bg-dark relative overflow-hidden" id="process">
-  <!-- Subtle marble texture overlay -->
-  <div class="absolute inset-0 opacity-[0.03]">
-    <img src="/images/textures/marble.jpg" alt="" class="w-full h-full object-cover" loading="lazy" />
-  </div>
-
-  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<section class="py-20 lg:py-28 bg-surface" id="process">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <!-- Section header -->
     <div class="reveal text-center mb-16 lg:mb-20">
       <p class="text-primary font-body text-sm tracking-[0.3em] uppercase mb-3">
         {t.process.title}
       </p>
-      <h2 class="font-display font-bold text-text-light" style="font-size: clamp(2rem, 3vw + 1rem, 3rem)">
+      <h2 class="font-display font-bold text-text" style="font-size: clamp(2rem, 3vw + 1rem, 3rem)">
         {t.process.title}
       </h2>
       <div class="w-16 h-0.5 bg-primary mx-auto mt-4"></div>
     </div>
 
-    <!-- Timeline -->
-    <div class="relative">
-      <!-- Connecting line (desktop) -->
-      <div class="hidden lg:block absolute top-12 left-0 right-0 h-px bg-white/10" aria-hidden="true">
-        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
-        {steps.map((step, i) => (
-          <div class={`reveal reveal-delay-${i + 1} relative`}>
-            <!-- Mobile vertical line -->
-            {i < steps.length - 1 && (
-              <div class="sm:hidden absolute left-6 top-14 bottom-0 w-px bg-white/10 -mb-8" aria-hidden="true"></div>
+    <!-- 3x2 Card Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+      {steps.map((step, i) => (
+        <div class:list={[
+          'reveal',
+          `reveal-delay-${Math.min(i + 1, 4)}`,
+          'bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all duration-500 relative',
+          i === 0 ? 'ring-2 ring-primary/30' : '',
+        ]}>
+          <!-- Icon circle -->
+          <div class:list={[
+            'w-12 h-12 rounded-full flex items-center justify-center mb-5',
+            step.color,
+          ]}>
+            {i === 0 && (
+              <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
+              </svg>
             )}
-
-            <div class="flex flex-col items-center text-center lg:items-center">
-              <!-- Number circle -->
-              <div class="relative z-10 w-14 h-14 rounded-full border-2 border-primary bg-bg-dark flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(232,136,45,0.15)]">
-                <span class="text-primary font-display font-bold text-lg">{step.num}</span>
-              </div>
-
-              <!-- Content -->
-              <h3 class="font-display font-semibold text-text-light text-xl mb-3">
-                {step.title}
-              </h3>
-              <p class="text-text-light/50 font-body text-sm leading-relaxed max-w-xs">
-                {step.desc}
-              </p>
-            </div>
-
-            <!-- Arrow between steps (desktop) -->
-            {i < steps.length - 1 && (
-              <div class="hidden lg:block absolute top-[2.75rem] -right-3 translate-x-1/2 text-primary/40" aria-hidden="true">
-                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                </svg>
-              </div>
+            {i === 1 && (
+              <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42" />
+              </svg>
+            )}
+            {i === 2 && (
+              <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />
+              </svg>
+            )}
+            {i === 3 && (
+              <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+              </svg>
+            )}
+            {i === 4 && (
+              <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" />
+              </svg>
+            )}
+            {i === 5 && (
+              <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
             )}
           </div>
-        ))}
-      </div>
+
+          <!-- Step number & title -->
+          <div class="flex items-baseline gap-3 mb-3">
+            <span class="text-primary font-body text-sm font-medium">{step.num}</span>
+            <h3 class="font-display font-semibold text-text text-xl">{step.title}</h3>
+          </div>
+
+          <!-- Description -->
+          <p class="text-muted font-body text-sm leading-relaxed">
+            {step.desc}
+          </p>
+        </div>
+      ))}
     </div>
   </div>
 </section>

@@ -8,17 +8,17 @@
 @import "@fontsource/dm-sans/700.css";
 
 @theme {
-  --color-primary: #E8882D;
-  --color-primary-hover: #d47a25;
+  --color-primary: #F2C94C;
+  --color-primary-hover: #D4A93A;
   --color-secondary: #3D3D3D;
-  --color-accent: #C6A87D;
-  --color-bg: #FAFAF7;
+  --color-accent: #F2C94C;
+  --color-bg: #FFFFFF;
   --color-bg-dark: #1C1C1E;
   --color-text: #1A1A2E;
   --color-text-light: #F5F5F0;
   --color-muted: #6B6B6B;
-  --color-border: #E5E2DB;
-  --color-surface: #F0EDE8;
+  --color-border: #E5E5E5;
+  --color-surface: #F8F8F8;
   --font-display: 'Cormorant Garamond', serif;
   --font-body: 'DM Sans', sans-serif;
 }

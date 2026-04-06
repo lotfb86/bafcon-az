@@ -9,15 +9,18 @@ const { lang } = Astro.props;
 const t = getStrings(lang);
 ---
 <section class="relative min-h-[90vh] flex items-end pb-16 lg:pb-20 overflow-hidden" aria-label="Hero">
-  <!-- Background image -->
+  <!-- Background video -->
   <div class="absolute inset-0">
-    <img
-      src="/images/hero/hero-interior.jpg"
-      alt=""
+    <video
+      autoplay
+      muted
+      loop
+      playsinline
+      poster="/images/hero/hero-interior.jpg"
       class="w-full h-full object-cover"
-      loading="eager"
-      fetchpriority="high"
-    />
+    >
+      <source src="/videos/hero-bg.mp4" type="video/mp4" />
+    </video>
     <!-- Gradient overlays for text readability -->
     <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent"></div>
     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
@@ -40,7 +43,7 @@ const t = getStrings(lang);
         class="font-display font-bold text-text-light leading-[1.1] mb-6"
         style="font-size: clamp(2.5rem, 5vw + 1rem, 4.5rem); text-shadow: 0 2px 12px rgba(0,0,0,0.6)"
       >
-        {t.hero.headline}
+        {t.hero.headline_before} <span class="text-primary">{t.hero.headline_accent}</span> {t.hero.headline_after}
       </h1>
 
       <!-- Subtitle -->
@@ -54,7 +57,7 @@ const t = getStrings(lang);
       <!-- CTA -->
       <a
         href={pageRoutes.contact[lang]}
-        class="inline-flex items-center gap-3 bg-primary hover:bg-primary-hover text-white font-body font-medium px-8 py-4 rounded-sm transition-all duration-300 text-base shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+        class="inline-flex items-center gap-3 bg-primary hover:bg-primary-hover text-bg-dark font-body font-medium px-8 py-4 rounded-sm transition-all duration-300 text-base shadow-lg hover:shadow-xl hover:-translate-y-0.5"
       >
         {t.hero.cta}
         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -63,21 +66,6 @@ const t = getStrings(lang);
       </a>
     </div>
 
-    <!-- Stats bar -->
-    <div class="mt-12 lg:mt-16 grid grid-cols-3 gap-6 sm:gap-8 max-w-xl">
-      <div class="border-l-2 border-primary pl-4">
-        <p class="text-text-light font-display font-bold text-3xl sm:text-4xl lg:text-5xl" style="text-shadow: 0 2px 8px rgba(0,0,0,0.5)">700+</p>
-        <p class="text-text-light/60 font-body text-xs sm:text-sm mt-1">{t.stats.apartments}</p>
-      </div>
-      <div class="border-l-2 border-primary pl-4">
-        <p class="text-text-light font-display font-bold text-3xl sm:text-4xl lg:text-5xl" style="text-shadow: 0 2px 8px rgba(0,0,0,0.5)">10+</p>
-        <p class="text-text-light/60 font-body text-xs sm:text-sm mt-1">{t.stats.years}</p>
-      </div>
-      <div class="border-l-2 border-primary pl-4">
-        <p class="text-text-light font-display font-bold text-3xl sm:text-4xl lg:text-5xl" style="text-shadow: 0 2px 8px rgba(0,0,0,0.5)">3</p>
-        <p class="text-text-light/60 font-body text-xs sm:text-sm mt-1">{t.stats.services}</p>
-      </div>
-    </div>
   </div>
 
   <!-- Scroll indicator -->

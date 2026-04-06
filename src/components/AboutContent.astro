@@ -9,13 +9,13 @@ const { lang } = Astro.props;
 const t = getStrings(lang);
 ---
 <!-- Page hero -->
-<section class="relative py-24 lg:py-32 bg-bg-dark overflow-hidden">
-  <div class="absolute inset-0 opacity-20">
+<section class="relative py-24 lg:py-32 bg-white overflow-hidden">
+  <div class="absolute inset-0 opacity-10">
     <img src="/images/about/office.jpg" alt="" class="w-full h-full object-cover" loading="eager" />
   </div>
-  <div class="absolute inset-0 bg-bg-dark/80"></div>
+  <div class="absolute inset-0 bg-white/80"></div>
   <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-    <h1 class="font-display font-bold text-text-light mb-4" style="font-size: clamp(2.5rem, 4vw + 1rem, 4rem)">
+    <h1 class="font-display font-bold text-text mb-4" style="font-size: clamp(2.5rem, 4vw + 1rem, 4rem)">
       {t.about.title}
     </h1>
     <div class="w-16 h-0.5 bg-primary mx-auto"></div>

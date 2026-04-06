@@ -10,25 +10,25 @@ const t = getStrings(lang);
 
 const testimonials = {
   az: [
-    { text: 'Qonaq otağımızı gördükdə gözlərimə inanmadım. 3D-də gördüyümüz şəkil ilə real nəticə demək olar eyni idi. 2 ayda hər şey hazır oldu. Bafcon-a minnətdarıq.', name: 'Nigar M.', project: '3 otaqlı mənzil, Nəsimi' },
-    { text: 'Əvvəl 3 fərqli usta ilə işləmişdik — hamısı yarımçıq qoydu. Bafcon-da bir komanda hər şeyi etdi: elektrik, santexnika, mebel. Gözlənilməz xərc olmadı.', name: 'Elvin H.', project: '2 otaqlı mənzil, Yasamal' },
-    { text: 'Mətbəximiz 15 illik idi. İndi qonaqlar gələndə soruşurlar: harada düzəldilib? Xüsusi ölçülü şkaflar tam yerinə oturdu. Dizayndan icraya qədər peşəkar iş.', name: 'Leyla A.', project: 'Mətbəx renovasiyası, Xətai' },
+    { text: 'İki il əvvəl köhnə mənzilimizə köçdük. İndi hər axşam qapını açanda ürəyim sevinir — sanki fərqli bir evə gəlirəm. Uşaqlar da öz otaqlarını çox sevirlər.', name: 'Nigar M.', project: '3 otaqlı mənzil, Nəsimi' },
+    { text: 'Əvvəllər hər şeyi ayrı-ayrı ustalarla həll edirdik, çox yorucu idi. Bu dəfə bir komanda hər şeyi üzərinə götürdü — biz sadəcə nəticəni gözlədik. Rahat proses idi.', name: 'Elvin H.', project: '2 otaqlı mənzil, Yasamal' },
+    { text: 'Mətbəximiz artıq bizim ailə məkanımızdır. Hər şey əlimin altındadır, dizayn tam istədiyim kimi oldu. İndi yeməyi daha çox sevə-sevə hazırlayıram.', name: 'Leyla A.', project: 'Mətbəx renovasiyası, Xətai' },
   ],
   ru: [
-    { text: 'Когда увидела гостиную — не поверила глазам. 3D-картинка и реальность практически совпали. За 2 месяца всё было готово. Спасибо команде Bafcon.', name: 'Нигар М.', project: '3-комн. квартира, Насими' },
-    { text: 'До этого работали с тремя мастерами — все бросили на полпути. В Bafcon одна команда сделала всё: электрику, сантехнику, мебель. Никаких скрытых расходов.', name: 'Эльвин Х.', project: '2-комн. квартира, Ясамал' },
-    { text: 'Кухне было 15 лет. Теперь гости спрашивают: где вам это сделали? Шкафы по индивидуальным размерам встали идеально. От дизайна до установки — всё на уровне.', name: 'Лейла А.', project: 'Ремонт кухни, Хатаи' },
+    { text: 'Два года назад переехали в старую квартиру. Теперь каждый вечер, открывая дверь, радуюсь — как будто это совершенно другой дом. Дети тоже обожают свои комнаты.', name: 'Нигар М.', project: '3-комн. квартира, Насими' },
+    { text: 'Раньше всё решали с разными мастерами — это было очень утомительно. В этот раз одна команда взяла всё на себя — мы просто ждали результат. Спокойный процесс.', name: 'Эльвин Х.', project: '2-комн. квартира, Ясамал' },
+    { text: 'Кухня теперь наше семейное место. Всё под рукой, дизайн именно такой, как я хотела. Теперь готовлю с удовольствием.', name: 'Лейла А.', project: 'Ремонт кухни, Хатаи' },
   ],
   en: [
-    { text: 'When I saw the living room, I could not believe my eyes. The 3D render and the real result were nearly identical. Everything was done in 2 months. Thank you, Bafcon.', name: 'Nigar M.', project: '3-room apartment, Nasimi' },
-    { text: 'We had worked with three different contractors before — all of them quit halfway. Bafcon handled everything: electrical, plumbing, furniture. No hidden costs.', name: 'Elvin H.', project: '2-room apartment, Yasamal' },
-    { text: 'Our kitchen was 15 years old. Now guests ask: where did you get this done? Custom cabinets fit perfectly. From design to installation — professional work throughout.', name: 'Leyla A.', project: 'Kitchen renovation, Khatai' },
+    { text: 'We moved into an old apartment two years ago. Now every evening when I open the door, my heart smiles — it feels like a completely different home. The kids love their rooms too.', name: 'Nigar M.', project: '3-room apartment, Nasimi' },
+    { text: 'Before, we dealt with different contractors for everything — it was exhausting. This time one team took care of it all — we just waited for the result. A stress-free process.', name: 'Elvin H.', project: '2-room apartment, Yasamal' },
+    { text: 'Our kitchen is now our family space. Everything is within reach, the design is exactly what I wanted. I actually enjoy cooking now.', name: 'Leyla A.', project: 'Kitchen renovation, Khatai' },
   ],
 };
 
 const currentTestimonials = testimonials[lang] || testimonials.az;
 ---
-<section class="py-20 lg:py-28 bg-surface" id="testimonials">
+<section class="py-20 lg:py-28 bg-white" id="testimonials">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <!-- Section header -->
     <div class="reveal text-center mb-14 lg:mb-20">
